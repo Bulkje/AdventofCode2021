@@ -1,6 +1,7 @@
 import Day1
+import Day2
 
 if __name__ == '__main__':
-    Day1.day_1_1()
+    Day2.direction2()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
