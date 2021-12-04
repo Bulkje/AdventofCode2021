@@ -4,6 +4,6 @@ import Day3
 import Day4
 
 if __name__ == '__main__':
-    Day4.day4()
+    Day4.OctopusBingo()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
