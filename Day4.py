@@ -42,7 +42,6 @@ def OctopusBingo():
         # returns [card, numbers.index(number), cards.index(card)]
         # winning card, index of winning number, index of winning card
         del originalcards[result[2]]
-        print(result)
     print(result)
 
     totalunmarked = 0
