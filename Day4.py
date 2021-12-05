@@ -53,19 +53,20 @@ def OctopusBingo():
 
 def bingofinder(cards, numbers): # returns winning card, index of winning number, index of winning card
     bingoturns = []
-    for number in numbers:
-        for card in cards:
-            winningturn = len(numbers)
+    for number in numbers: # voor elk getal dat getrokken wordt
+        for card in cards: #voor elke bingo kaart
+            winningturn = len(numbers) # winning turn is heel ver weg
             y = 0
-            while y < len(card[0]):
-                for getal in card[y]:
+            while y < len(card[0]): #card[0] is het aantal rijen en kolommen, want een kaart is vierkant
+                for getal in card[y]: #voor getal in rij
                     if getal == number:
-                        card[y][card[y].index(getal)] = 'X'
-                        if card[y] == ['X', 'X', 'X', 'X', 'X']:
+                        card[y][card[y].index(getal)] = 'X' #kruis getal af
+                        if card[y] == ['X', 'X', 'X', 'X', 'X']: #kijk of rij bingo geeft
                             if numbers.index(number) < winningturn:
-                                winningturn = numbers.index(number)
+                                winningturn = numbers.index(number) #maak winningturn kleiner
                         x = 0
-                        while x < len(card[0]):
+                        while x < len(card[0]): #aantal kolommen
+                            #als kolom bingo geeft
                             if card[0][x] == 'X' and card[1][x] == 'X' and card[2][x] == 'X' and card[3][x] == 'X' and card[4][x] == 'X':
                                 if numbers.index(number) < winningturn:
                                     winningturn = numbers.index(number)
@@ -82,3 +83,4 @@ def bingofinder(cards, numbers): # returns winning card, index of winning number
                 bingoturns.append(winningturn)
                 #print(cards.index(card))
                 return [card, numbers.index(number), cards.index(card)]
+                # winning card, index of winning number, index of winning card

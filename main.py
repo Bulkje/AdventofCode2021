@@ -5,6 +5,6 @@ import Day4
 import Day5
 
 if __name__ == '__main__':
-    Day5.hydrothermalvents()
+    Day4.OctopusBingo()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
