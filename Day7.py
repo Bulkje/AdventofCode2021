@@ -2,8 +2,7 @@ import statistics
 
 
 def crabsubmarines():
-    # f = open("input day 7.txt", "r")
-    f = open("test.txt", "r")
+    f = open("input day 7.txt", "r")
     lines = f.readlines()
 
     locations = []
@@ -21,24 +20,26 @@ def crabsubmarines():
 
 def crabsubmarines_highfuel():
     f = open("input day 7.txt", "r")
-    #f = open("test.txt", "r")
     lines = f.readlines()
 
     locations = []
     for location in lines[0].split(','):
         locations.append(int(location))
-    preflocation = round(sum(locations) / len(locations))
-    fuel = 0
+    preflocation = []
+    #because of rounding shenanigans I have to do this
+    preflocation.append(round(sum(locations) / len(locations)) - 1)
+    preflocation.append(round(sum(locations) / len(locations)))
+    preflocation.append(round(sum(locations) / len(locations)) + 1)
 
-    for location in locations:
-        if preflocation > location:
-            n = preflocation - location
-        if location > preflocation:
-            n = location - preflocation
-        for num in range(0, n + 1, 1):
-            fuel = fuel + num
-
-    print(fuel)
-    # 368365 too low
-    # 99420073 too low
-    # 99788438 too high
+    totalfuel = []
+    for ideallocation in preflocation:
+        fuel = 0
+        for location in locations:
+            if ideallocation > location:
+                n = ideallocation - location
+            if location > ideallocation:
+                n = location - ideallocation
+            for num in range(0, n + 1, 1):
+                fuel = fuel + num
+        totalfuel.append(fuel)
+    print(min(totalfuel))
