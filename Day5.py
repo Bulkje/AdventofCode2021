@@ -97,7 +97,7 @@ def hydrothermalvents():
                 i -= 1
                 j -= 1
         #print(hydrovents)
-    print(hydrovents)
+    #print(hydrovents)
     print(sum(value > 1 for value in hydrovents.values()))
     #19717 too low
     #14857 too low
