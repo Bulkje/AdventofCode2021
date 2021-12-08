@@ -5,8 +5,8 @@ import Day4
 import Day5
 import Day6
 import Day7
-
+import Day8
 if __name__ == '__main__':
-    Day7.crabsubmarines_highfuel()
+    Day8.decodeDisplay()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
