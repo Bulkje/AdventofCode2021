@@ -6,7 +6,9 @@ import Day5
 import Day6
 import Day7
 import Day8
-if __name__ == '__main__':
-    Day8.decodeDisplay()
+import Day9
 
+
+if __name__ == '__main__':
+    Day9.lavaflows_basins()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
