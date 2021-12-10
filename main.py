@@ -7,8 +7,9 @@ import Day6
 import Day7
 import Day8
 import Day9
+import Day10
 
 
 if __name__ == '__main__':
-    Day9.lavaflows_basins()
+    Day10.syntaxError()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
