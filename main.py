@@ -8,8 +8,9 @@ import Day7
 import Day8
 import Day9
 import Day10
+import Day11
 
 
 if __name__ == '__main__':
-    Day10.syntaxError()
+    Day11.Octopuslight()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
