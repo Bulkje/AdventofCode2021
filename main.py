@@ -10,7 +10,11 @@ import Day9
 import Day10
 import Day11
 
+import Day13
+import Day14
+import Day15
+
 
 if __name__ == '__main__':
-    Day11.Octopuslight()
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    #Day14.polymer(40)
+    #Day15.lowerNeighbor()
