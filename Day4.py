@@ -1,6 +1,5 @@
 def OctopusBingo():
     f = open("input day 4.txt", "r")
-#    f = open("test.txt", "r")
     lines = f.readlines()
     numbers = lines[0]
     numbers = numbers.split(',')

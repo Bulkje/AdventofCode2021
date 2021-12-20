@@ -16,5 +16,4 @@ import Day15
 
 
 if __name__ == '__main__':
-    Day14.polymer(40)
-    #Day15.lowerNeighbor()
+    Day15.lowerNeighbor()
