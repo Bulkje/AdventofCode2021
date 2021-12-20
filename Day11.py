@@ -15,7 +15,6 @@ def Octopuslight(steps):
     step = 0
     print(numbergrid)
     totalflashes = 0
-    #while True:
     while step < steps:
         numbergrid += 1
         flashed = np.zeros((10, 10), dtype=int)
@@ -42,9 +41,6 @@ def Octopuslight(steps):
                             numbergrid[x, y + 1] += 1
                         if x < 9 and y < 9:
                             numbergrid[x + 1, y + 1] += 1
-        if np.array_equiv(flashed, np.zeros((10, 10)) + 1):
-            print(step + 1)
-            break
         for x in range(10):
             for y in range(10):
                 if flashed[x, y] == 1:
@@ -94,7 +90,7 @@ def Octopuslight_sync():
                             numbergrid[x, y + 1] += 1
                         if x < 9 and y < 9:
                             numbergrid[x + 1, y + 1] += 1
-        if np.array_equiv(flashed, np.zeros((10, 10)) + 1):
+        if np.array_equiv(flashed, np.ones((10, 10))):
             print(step + 1)
             break
         for x in range(10):
