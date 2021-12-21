@@ -15,7 +15,12 @@ import Day14
 import Day15
 
 
+
+
+
+import Day21
+
+
 if __name__ == '__main__':
-    Day15.biggermap()
-    #Day15.lowerNeighbor()
+    Day21.DiracMain()
 
