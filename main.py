@@ -17,4 +17,5 @@ import Day15
 
 if __name__ == '__main__':
     Day15.biggermap()
+    #Day15.lowerNeighbor()
 
