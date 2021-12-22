@@ -17,10 +17,10 @@ import Day15
 
 
 
-
+import Day20
 import Day21
 
 
 if __name__ == '__main__':
-    Day21.DiracMain()
+    Day20.imageEnhancer(50)
 
