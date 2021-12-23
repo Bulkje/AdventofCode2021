@@ -14,7 +14,7 @@ import Day13
 import Day14
 import Day15
 
-
+import Day17
 
 
 import Day20
@@ -22,5 +22,4 @@ import Day21
 
 
 if __name__ == '__main__':
-    Day20.imageEnhancer(50)
-
+    Day17.Trickshot()
