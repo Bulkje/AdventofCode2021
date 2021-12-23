@@ -2,7 +2,6 @@ import re
 
 def Trickshot():
     f = open("input day 17.txt", "r")
-    #f = open("test.txt", "r")
     lines = f.readlines()
     numbers = re.sub(r'[^-\d]', " ", lines[0]).split(' ')
     print(numbers)
@@ -34,6 +33,4 @@ def Trickshot():
                 if xSpeed != 0:
                     xSpeed -= 1
                 ySpeed -= 1
-    hits.sort()
-    hits = set(hits)
     print(maxV, yMax, len(hits))
