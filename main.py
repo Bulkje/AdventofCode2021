@@ -15,11 +15,15 @@ import Day14
 import Day15
 
 import Day17
-
+import Day18
 
 import Day20
 import Day21
 
 
+import Day24
+import Day25
+
 if __name__ == '__main__':
-    Day17.Trickshot()
+    Day18.snailfishHW()
+    #Day24.ALU()
