@@ -13,7 +13,6 @@ def imageEnhancer(cycles):
             algorithm[0][i] = 1
         i += 1
 
-
     i = 2
     grid = []
     while i < len(lines):
@@ -44,7 +43,6 @@ def imageEnhancer(cycles):
         cycle += 1
     print(np.sum(npGrid))
     #5083 too high
-
 
 def Neighbors9(x, y, npGrid, even):
     if even == True:

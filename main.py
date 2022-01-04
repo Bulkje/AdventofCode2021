@@ -13,7 +13,7 @@ import Day12
 import Day13
 import Day14
 import Day15
-
+import Day16
 import Day17
 import Day18
 
@@ -25,6 +25,7 @@ import Day24
 import Day25
 
 if __name__ == '__main__':
+    Day16.packetVersionSum()
     #Day18.snailfishHW()
     #Day24.ALU()
-    print('done')
+
