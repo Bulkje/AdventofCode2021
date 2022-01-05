@@ -2,7 +2,6 @@ import numpy as np
 
 def packetVersionSum():
     f = open("input day 16.txt", "r")
-    f = open("test.txt", "r")
     lines = f.readlines()
 
     for code in lines:
@@ -10,87 +9,126 @@ def packetVersionSum():
         for char in code:
             if char != '\n':
                 bin += hexToBin(char)
-        print(code)
-        print(bin)
-        sum = packetVersion(bin)
-        print('Het antwoord is:', sum)
+        sum = totalVersion(bin)
+        total = parseSingle(bin)
+        print('Antwoord deel 1:', sum)
+        print('Antwoord deel 2:', total[0])
 
-def literalPacket(packetBin):
-    index = 0
-    literal = ''
+
+def totalVersion(packetBin):
     version = int(packetBin[:3], 2)
     typeID = int(packetBin[3:6], 2)
-    index += 6
-    print(packetBin)
+    index = 6
+    anotherPacket = True
+    while anotherPacket == True:
+        if typeID == 4:
+            while packetBin[index] == '1':
+                index += 5
+            index += 5
+            if len(packetBin) - index > 7:
+                anotherPacket = True
+            else:
+                anotherPacket = False
+        else:
+            lenID = packetBin[index]
+            index += 1
+            if lenID == '0':
+                index += 15
+                anotherPacket = True
+            else:
+                index += 11
+                anotherPacket = True
+        if anotherPacket == True:
+            version += int(packetBin[index:index + 3], 2)
+            typeID = int(packetBin[index + 3:index + 6], 2)
+            index += 6
+    return version
+
+def parseSingle(packetBin):
+    typeID = int(packetBin[3:6], 2)
+    if typeID == 4: #literal value
+        return Type4(packetBin)
+    else:
+        values, length = queue(packetBin)
+    if typeID == 0:
+    #sum of contained values
+        return sum(values), length
+    elif typeID == 1:
+    #product of contained values
+        value = 1
+        for number in values:
+            value *= number
+        return value, length
+    elif typeID == 2:
+    #minimum of contained values
+        return min(values), length
+    elif typeID == 3:
+    #maximum of contained values
+        return max(values), length
+    elif typeID == 5:
+    #returns 1 if 1st packet > 2nd packet, else 0
+    #always contains 2 subpackets
+        if values[0] > values[1]:
+            return 1, length
+        else:
+            return 0, length
+    elif typeID == 6:
+    #returns 1 if 1st packet < 2nd packet, else 0
+    #always contains 2 subpackets
+        if values[0] < values[1]:
+            return 1, length
+        else:
+            return 0, length
+    elif typeID == 7:
+    #returns 1 if 1st packet == 2nd packet, else 0
+    #always contains 2 subpackets
+        if values[0] == values[1]:
+            return 1, length
+        else:
+            return 0, length
+
+def queue(packetBin):
+    values = []
+    index = 6
+    lenID = packetBin[index]
+    index += 1
+    if lenID == '0':
+        lengthSub = int(packetBin[index:index + 15], 2)
+        index += 15
+        subPackets = packetBin[index:index + lengthSub]
+        length = index
+        while len(subPackets) > 6:
+            packetTuple = parseSingle(subPackets)
+            values.append(packetTuple[0])
+            subIndex = packetTuple[1]
+            length += subIndex
+            subPackets = subPackets[subIndex:]
+    else:
+        amount = int(packetBin[index:index + 11], 2)
+        index += 11
+        length = index
+        subPackets = packetBin[index:]
+        subIndex = 0
+        while len(values) < amount:
+            packetTuple = parseSingle(packetBin[index + subIndex:])
+            values.append(packetTuple[0])
+            subIndex += packetTuple[1]
+            length += packetTuple[1]
+            subPackets = subPackets[subIndex:]
+    return values, length
+
+def Type4(packetBin):
+    index = 6
+    literal = ''
     while packetBin[index] == '1':
         index += 1
         literal += packetBin[index:index + 4]
         index += 4
-    if packetBin[index] == '0':
-        index += 1
-        literal += packetBin[index:index + 4]
-        index += 4
+    index += 1
+    literal += packetBin[index:index + 4]
+    index += 4
     value = int(literal, 2)
-    newPacket = packetBin[index:]
-    print(value)
-    return version, value, newPacket
-
-def packetVersion(packetBin, *Amount):
-    version = 0
-    index = 0
-    if Amount:
-        Amount = Amount[0]
-        while Amount > 0:
-            if Amount == 1:
-                packetTuple = packetVersion(packetBin[index:], 1)
-                version += packetTuple[0]
-                index += packetTuple[1]
-                Amount = 0
-                break
-            print(index)
-            packetTuple = packetVersion(packetBin[index:])
-            version += packetTuple[0]
-            index += packetTuple[1]
-
-            Amount -= 1
-
-    while index < len(packetBin) - 7:
-        #print(packetBin[index:])
-        index += 3
-        version += int(packetBin[index - 3:index], 2)
-        typeID = int(packetBin[index:index + 3], 2)
-        index += 3
-        if typeID != 4:
-            lenID = packetBin[index:index + 1]
-            index += 1
-            if lenID == '0':
-                lengthSub = int(packetBin[index:index + 15], 2)
-                index += 15
-                packetTuple = packetVersion(packetBin[index:index + lengthSub])
-                version += packetTuple[0]
-                processedLen = packetTuple[1]
-                while processedLen < lengthSub:
-                    packetTuple = packetVersion(packetBin[index + processedLen:index + lengthSub + processedLen])
-                    version += packetTuple[0]
-                    processedLen += packetTuple[1]
-
-                index += lengthSub
-
-            elif lenID == '1':
-                subAmount = int(packetBin[index:index + 11], 2)
-                index += 11
-                packetTuple = packetVersion(packetBin[index:], subAmount)
-                version += packetTuple[0]
-                index += packetTuple[1]
-        else:
-            packetTuple = literalPacket(packetBin[index:])
-            version += packetTuple[0]
-            index -= len(packetTuple[2])
-            packetBin = packetTuple[2]
-    return (version, len(packetBin))
-
-#538 too low
-
+    return value, index
 
 def hexToBin(char):
     if char == '0':
