@@ -25,11 +25,6 @@ import Day24
 import Day25
 
 if __name__ == '__main__':
-    #print(Day18.reduce('[[[[[4,3],4],4],[7,[[8,4],9]]],[1,1]]'))
-    #print(Day18.reduce('[[[[0,7],4],[7,[[8,4],9]]],[1,1]]'))
-    #print(Day18.reduce('[[[[0,7],4],[15,[0,13]]],[1,1]]'))
-    #print(Day18.reduce('[[[[0,7],4],[[7,8],[0,13]]],[1,1]]'))
-    print(Day18.reduce('[[[[0,7],4],[[7,8],[0,[6,7]]]],[1,1]]'))
-    #Day18.snailfishHW()
+    Day18.snailfishHW()
     #Day24.ALU()
 

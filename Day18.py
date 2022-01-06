@@ -19,6 +19,16 @@ def snailfishHW():
 
     #list of all the lists to be added
     print(snailfishNumbers)
+    line = 0
+    while line < len(lines) - 1:
+        Cont = True
+        snailNumber = '[' + lines[line] + ',' + lines[line + 1] + ']'
+        while Cont == True:
+            snailNumber, Cont = reduce(snailNumber)
+        #print(snailNumber)
+        line += 1
+    print(snailNumber)
+    print(magnitude(ast.literal_eval(snailNumber)))
 
 def reduce(strList):
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -56,27 +66,39 @@ def reduce(strList):
             if leftIndex == -1:
                 newLeft = ''
                 leftIndex = 0
-                newStr = strList[:leftIndex] + str(newLeft) + strList[leftIndex:pairIndex[0]] + '0,' + strList[pairIndex[1]:rightIndex - 2]
+
+                newStr = strList[:leftIndex]
+                newStr += str(newLeft)
+                newStr += strList[leftIndex:pairIndex[0]]
+                newStr += '0' + strList[pairIndex[1] + 1]
+                newStr += strList[pairIndex[1]:rightIndex - 2]
+
             else:
                 newLeft = first + leftNr
-                newStr = strList[:leftIndex] + str(newLeft) + ',' + strList[leftIndex + 2:pairIndex[0]] + '0,' + strList[pairIndex[1]:rightIndex - 2]
 
+                newStr = strList[:leftIndex]
+                newStr += str(newLeft) + ','
+                newStr += strList[leftIndex + 2:pairIndex[0]] + '0'
+                newStr += strList[pairIndex[1] + 1]
+                newStr += strList[pairIndex[1] + 2:rightIndex]
 
             if rightNr != None:
-                newStr += strList[rightIndex - 2:rightIndex]
-                newStr += (str(rightNr) + strList[rightIndex + 1:])
-            return newStr
+                #if newStr[-1] != ',':
+                    #newStr += '['
+
+                newStr += str(rightNr)
+                newStr += strList[rightIndex + 1:]
+            return newStr, True
 
         #split
         if strList[i] == '1' and strList[i + 1] in numbers:
             split = int(strList[i:i + 2])
             newPair = '[' + str(split // 2) + ',' + str(math.ceil(split / 2)) + ']'
             newStr = strList[:i] + newPair + strList[i + 2:]
-            return newStr
+            return newStr, True
 
         i += 1
-    print(newStr)
-    #return newStr
+    return strList, False
 
 def magnitude(list):
     sum = 0
