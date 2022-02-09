@@ -42,7 +42,7 @@ def snailfishHW():
         M = magnitude(ast.literal_eval(snailNumber))
         if M > maximum:
             maximum = M
-        print(maximum)
+    print(maximum)
 
 def reduce(strList):
     strList.replace(' ', '')
