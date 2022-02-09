@@ -17,7 +17,10 @@ def ALU():
     Vars = {"w":0, "x":0, "y":0, "z":0}
     for instruction in lines:
         operation = instruction.split()[0]
-        if operation == 'add':
+        if instruction.split()[2] in Vars.keys():
+            if operation == 'add':
+                Vars[instruction.split()[1]] += Vars[instruction.split()[2]]
+        elif operation == 'add':
             Vars[instruction.split()[1]] += int(instruction.split()[2])
         elif operation == 'mul':
             Vars[instruction.split()[1]] *= int(instruction.split()[2])
