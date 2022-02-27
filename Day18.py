@@ -105,5 +105,3 @@ def magnitude(list):
     else:
         sum += magnitude(list[1]) * 2
     return sum
-
-#1752 too low
