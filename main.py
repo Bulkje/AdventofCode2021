@@ -26,4 +26,4 @@ import Day25
 
 
 if __name__ == '__main__':
-    Day24.ALU()
+    Day19()
