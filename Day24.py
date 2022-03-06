@@ -1,6 +1,7 @@
 import math
 from functools import lru_cache
 
+#input ranges for my input
 
 
 def ALU():
@@ -16,26 +17,38 @@ def ALU():
         if lines[i][-1] == '\n':
             lines[i] = lines[i][:-1]
         i += 1
+    deduction = [(3, 9), (1, 6), (1, 2), (6, 9), (2, 9), (1, 8), (4, 9), (1, 6), (1, 4), (1, 4), (6, 9), (8, 9), (4, 9), (1, 7)]
+    validnumbers = []
+    modelNr = "96299896449997"
 
-    modelNumber = "99999999999999"
-    Answer = False
+    while True:
+        if checkModelNr(modelNr, lines) == True:
+            print(modelNr, "Het hoogste modelnr")
+            break
+        else:
+            IntNr = int(modelNr)
+            IntNr -= 1
+            modelNr = str(IntNr)
+            valid = False
+            while valid == False:
+                goodDigit = 0
+                for x in range(14):
+                    if int(modelNr[x]) in range(deduction[x]):
+                        goodDigit += 1
+                if goodDigit == 14:
+                    valid = True
+                else:
+                    IntNr -= 1
+                    modelNr = str(IntNr)
 
-    tries = 0
-    while Answer == False:
-        Answer = checkModelNr(modelNumber, lines)
-        modelNr = int(modelNumber)
-        modelNr -= 1
-        modelNumber = str(modelNr)
-        modelNumber.replace("0", "1")
-        tries += 1
-        print(tries)
-    print("Het is goed!", int(modelNumber) + 1)
+
+
 
 
 
 def checkModelNr(modelNumber, lines):
     digit = 13
-    Vars = {"w":0, "x":0, "y":0, "z":0}
+    Vars = {"w": 0, "x": 0, "y": 0, "z": 0}
     for instruction in lines:
         if len(instruction) < 6:
             Vars["w"] = int(modelNumber[digit])
